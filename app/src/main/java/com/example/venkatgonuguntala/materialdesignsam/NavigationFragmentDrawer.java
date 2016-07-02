@@ -7,12 +7,16 @@ import android.os.Bundle;
 
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.app.Fragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -27,6 +31,8 @@ public class NavigationFragmentDrawer extends Fragment {
 
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
+
+    private VenksAdapter adapter;
 
     private boolean mUserLearnedDrawer;
     private boolean mFromSavedInstanceState;
@@ -52,7 +58,24 @@ public class NavigationFragmentDrawer extends Fragment {
         // Inflate the layout for this fragment
         View layout=inflater.inflate(R.layout.navigation_fragment_drawer, container, false);
         recyclerView= (RecyclerView) layout.findViewById(R.id.drawerlist);
+        adapter=new VenksAdapter(getActivity(),getData());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return layout;
+    }
+
+    public static List<Information> getData(){
+        List<Information> data = new ArrayList<>();
+        int[] icons={R.drawable.ic_abstract,R.drawable.ic_abstract,R.drawable.ic_abstract,R.drawable.ic_abstract};
+        String[] titles={"Venks","YOU","viks","soxks"};
+      //for(int i=0;i < titles.length && i< icons.length;i++){
+        for(int i=0;i < 100;i++){
+          Information current= new Information();
+            current.imageId=icons[i%icons.length];
+            current.title=titles[i%icons.length];
+            data.add(current);
+        }
+        return data;
     }
 
 

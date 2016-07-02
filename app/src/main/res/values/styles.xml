@@ -14,6 +14,7 @@
     
     <style name="MyCustomToolBarTheme" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:textColorPrimary">#F00</item>
+        <item name="android:textColorSecondary">#c00</item>
     </style>
 
     <style name="PopupSettingsButtonTheme" parent="ThemeOverlay.AppCompat.Dark">
